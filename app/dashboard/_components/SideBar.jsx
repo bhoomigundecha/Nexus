@@ -47,7 +47,7 @@ const SideBar = () => {
         <ul>
             {Menu.map((item, index)=>(
                 <Link href={item.path}>
-                    <div className={`flex items-center gap-2 text-gray-600 p-3 cursor-pointer hover:bg-gray-100 hover:text-black rounded-lg ${item.path===path && 'bg-gray-100 text-black'}`}>
+                    <div className={`flex items-center gap-2 text-gray-600 p-3 cursor-pointer hover:bg-gray-100 hover:text-black rounded-lg mb-3 ${item.path===path && 'bg-gray-100 text-black'}`}>
                         <div className="text-2xl">{item.icon}</div>
                         <h2>{item.name}</h2>
                     </div>
