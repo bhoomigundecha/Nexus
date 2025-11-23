@@ -1,0 +1,150 @@
+{
+  "id": "1c627912-5592-46ca-a952-42a5e98d018e",
+  "prevId": "3c7990ed-b018-4eaf-baa0-50af44748e3c",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.chapters": {
+      "name": "chapters",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "courseid": {
+          "name": "courseid",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "chapterid": {
+          "name": "chapterid",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "content": {
+          "name": "content",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "videoid": {
+          "name": "videoid",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.courselist": {
+      "name": "courselist",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "courseid": {
+          "name": "courseid",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "category": {
+          "name": "category",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "level": {
+          "name": "level",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "includevideo": {
+          "name": "includevideo",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Yes'"
+        },
+        "courseoutput": {
+          "name": "courseoutput",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "createdby": {
+          "name": "createdby",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "username": {
+          "name": "username",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "userprofileimage": {
+          "name": "userprofileimage",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "coursebanner": {
+          "name": "coursebanner",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'/placeholder.png'"
+        },
+        "publish": {
+          "name": "publish",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

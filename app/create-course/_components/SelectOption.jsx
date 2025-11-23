@@ -25,8 +25,10 @@ const SelectOption = () => {
           <label htmlFor="" className="text-sm">
             Difficulty Level
           </label>
-          <Select onValueChange={(value) => handleInputChange('level', value)}
-            defaultValue={userCourseInput?.level}>
+          <Select
+            onValueChange={(value) => handleInputChange("level", value)}
+            defaultValue={userCourseInput?.level}
+          >
             <SelectTrigger className="">
               <SelectValue placeholder="Select" />
             </SelectTrigger>
@@ -41,9 +43,10 @@ const SelectOption = () => {
           <label htmlFor="" className="text-sm">
             Course Duration
           </label>
-          <Select 
-          defaultValue={userCourseInput?.duration}
-          onValueChange={(value) => handleInputChange('duration', value)}>
+          <Select
+            defaultValue={userCourseInput?.duration}
+            onValueChange={(value) => handleInputChange("duration", value)}
+          >
             <SelectTrigger className="">
               <SelectValue placeholder="Select" />
             </SelectTrigger>
@@ -60,11 +63,10 @@ const SelectOption = () => {
           <label htmlFor="" className="text-sm">
             Add Video
           </label>
-          <Select 
-          defaultValue={userCourseInput?.displayVideo}
-          
-          
-          onValueChange={(value) => handleInputChange('displayVideo', value)}>
+          <Select
+            defaultValue={userCourseInput?.displayVideo}
+            onValueChange={(value) => handleInputChange("displayVideo", value)}
+          >
             <SelectTrigger className="">
               <SelectValue placeholder="Select" />
             </SelectTrigger>
@@ -78,10 +80,10 @@ const SelectOption = () => {
           <label htmlFor="" className="text-sm">
             No of chapters
           </label>
-          <Input type="number" 
-          defaultValue={userCourseInput?.noOfChapters}
-          
-          onChange={(e) => handleInputChange('noOfChapters', e.target.value)}
+          <Input
+            type="number"
+            defaultValue={userCourseInput?.noOfChapters}
+            onChange={(e) => handleInputChange("noOfChapters", e.target.value)}
           />
         </div>
       </div>

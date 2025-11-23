@@ -1,12 +1,16 @@
+import { UserButton } from '@clerk/nextjs'
 import React from 'react'
 import AddCourse from './_components/AddCourse'
-import { UserButton } from '@clerk/nextjs'
-const page = () => {
+import UserCourseList from './_components/UserCourseList'
+
+const Dashboard = () => {
   return (
     <div>
-      <AddCourse />
+      <AddCourse/>
+      {/* Display list of courses */}
+      <UserCourseList/>
     </div>
   )
 }
 
-export default page
+export default Dashboard

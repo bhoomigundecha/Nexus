@@ -5,35 +5,36 @@ import Image from 'next/image'
 import {HiOutlineHome, HiOutlineSquare3Stack3D, HiOutlineShieldCheck, HiOutlinePower} from 'react-icons/hi2';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { SignOutButton } from '@clerk/nextjs';
 import { Progress } from '@/components/ui/progress';
 
 const SideBar = () => {
-    const Menu=[
+    const Menu = [
         {
-            id:1,
-            name:'Home',
-            icon:<HiOutlineHome/>,
-            path:'/dashboard'
+            id: 1,
+            name: 'Home',
+            icon: <HiOutlineHome />,
+            path: '/dashboard'
         },
         {
-            id:1,
-            name:'Explore',
-            icon:<HiOutlineSquare3Stack3D/>,
-            path:'/dashboard/explore'
+            id: 2,
+            name: 'Explore',
+            icon: <HiOutlineSquare3Stack3D />,
+            path: '/dashboard/explore'
         },
         {
-            id:1,
-            name:'Upgrade',
-            icon:<HiOutlineShieldCheck/>,
-            path:'/dashboard/upgrade'
+            id: 3,
+            name: 'Upgrade',
+            icon: <HiOutlineShieldCheck />,
+            path: '/dashboard/upgrade'
         },
         {
-            id:1,
-            name:'Logout',
-            icon:<HiOutlinePower/>,
-            path:'/dashboard/logout'
+            id: 4,
+            name: 'Logout',
+            icon: <HiOutlinePower />,
+            path: '/dashboard/logout'
         }
-    ]
+    ];
 
     const path = usePathname();
   return (
@@ -46,8 +47,17 @@ const SideBar = () => {
         <hr className="my-5"/>
 
         <ul>
-            {
-            Menu.map((item) => (
+            {Menu.map((item) => (
+              item.path === '/dashboard/logout' ? (
+                <div key={item.id} className="w-full">
+                    <SignOutButton>
+                        <div className={`flex items-center gap-2 text-gray-600 p-3 cursor-pointer hover:bg-gray-100 hover:text-black rounded-lg mb-3`}>
+                            <div className="text-2xl">{item.icon}</div>
+                            <h2>{item.name}</h2>
+                        </div>
+                    </SignOutButton>
+                </div>
+              ) : (
                 <Link href={item.path} key={item.id}>
                 <div
                     className={`flex items-center gap-2 text-gray-600 p-3 cursor-pointer hover:bg-gray-100 hover:text-black rounded-lg mb-3 ${
@@ -58,8 +68,8 @@ const SideBar = () => {
                     <h2>{item.name}</h2>
                 </div>
                 </Link>
-            ))
-            }
+              )
+            ))}
         </ul>
 
         <div className='absolute bottom-10 w-[80%]'>
