@@ -103,29 +103,36 @@ const CreateCourse = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       {/* Stepper */}
-      <div className="flex flex-col justify-center items-center mt-10">
-        <h2 className="text-4xl text-primary font-medium">Create Course</h2>
+      <div className="flex flex-col justify-center items-center pt-10 pb-8">
+        <div className="text-center mb-10">
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent mb-3">
+            Create Your Course
+          </h2>
+          <p className="text-gray-600 text-lg">Follow the steps below to generate your AI-powered course</p>
+        </div>
 
-        <div className="flex mt-10">
+        <div className="flex mt-6 bg-white px-8 py-6 rounded-2xl shadow-lg">
           {StepperOptions.map((item, index) => (
             <div key={item.id} className="flex items-center">
-              <div className="flex flex-col items-center w-[10px] md:w-[100px]">
+              <div className="flex flex-col items-center w-[10px] md:w-[120px]">
                 <div
-                  className={`bg-gray-200 p-3 rounded-full text-white ${
-                    activeIndex >= index && "bg-primary"
+                  className={`p-4 rounded-full text-white transition-all duration-300 shadow-md ${
+                    activeIndex >= index 
+                      ? "bg-gradient-to-br from-blue-700 to-blue-500 scale-110" 
+                      : "bg-gray-200 text-gray-400"
                   }`}
                 >
-                  {item.icon}
+                  <div className="text-2xl">{item.icon}</div>
                 </div>
-                <h2 className="hidden md:block text-sm">{item.name}</h2>
+                <h2 className="hidden md:block text-sm font-medium mt-3 text-gray-700">{item.name}</h2>
               </div>
 
               {index !== StepperOptions.length - 1 && (
                 <div
-                  className={`h-1 w-[50px] md:w-[100px] lg:w-[170px] rounded-full bg-gray-300 ${
-                    activeIndex >= index && "bg-primary"
+                  className={`h-1 w-[50px] md:w-[100px] lg:w-[150px] rounded-full mx-2 transition-all duration-300 ${
+                    activeIndex > index ? "bg-gradient-to-r from-blue-700 to-blue-500" : "bg-gray-200"
                   }`}
                 ></div>
               )}
@@ -134,29 +141,40 @@ const CreateCourse = () => {
         </div>
       </div>
 
-      <div className="px-10 md:px-20 lg:px-44 mt-10">
-        {activeIndex === 0 && <SelectCategory />}
-        {activeIndex === 1 && <TopicDescription />}
-        {activeIndex === 2 && <SelectOption />}
+      <div className="px-6 md:px-20 lg:px-44 pb-10">
+        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-10">
+          {activeIndex === 0 && <SelectCategory />}
+          {activeIndex === 1 && <TopicDescription />}
+          {activeIndex === 2 && <SelectOption />}
 
-        <div className="flex justify-between mt-10">
-          <Button
-            variant="outline"
-            disabled={activeIndex === 0}
-            onClick={() => setActiveIndex(activeIndex - 1)}
-          >
-            Previous
-          </Button>
+          <div className="flex justify-between mt-10 pt-6 border-t border-gray-200">
+            <Button
+              variant="outline"
+              disabled={activeIndex === 0}
+              onClick={() => setActiveIndex(activeIndex - 1)}
+              className="px-8 py-3 text-base font-medium border-2 border-gray-300 hover:border-blue-700 hover:text-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              ← Previous
+            </Button>
 
-          {activeIndex < 2 ? (
-            <Button disabled={checkStatus()} onClick={() => setActiveIndex(activeIndex + 1)}>
-              Next
-            </Button>
-          ) : (
-            <Button disabled={checkStatus()} onClick={GenerateCourseLayout}>
-              Generate Course Layout
-            </Button>
-          )}
+            {activeIndex < 2 ? (
+              <Button 
+                disabled={checkStatus()} 
+                onClick={() => setActiveIndex(activeIndex + 1)}
+                className="px-8 py-3 text-base font-medium bg-gradient-to-r from-blue-700 to-blue-600 hover:from-blue-800 hover:to-blue-700 shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Next →
+              </Button>
+            ) : (
+              <Button 
+                disabled={checkStatus()} 
+                onClick={GenerateCourseLayout}
+                className="px-8 py-3 text-base font-medium bg-gradient-to-r from-blue-700 to-blue-600 hover:from-blue-800 hover:to-blue-700 shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                ✨ Generate Course
+              </Button>
+            )}
+          </div>
         </div>
       </div>
 

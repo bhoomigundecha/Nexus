@@ -8,7 +8,7 @@ import Hero from "./_components/Hero";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-white">
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-100">
       {/* Dot Pattern Overlay */}
       <div
         className="absolute inset-0 z-0 opacity-40"
@@ -19,9 +19,11 @@ export default function Home() {
       ></div>
 
       {/* Background Gradients */}
-      <div className="absolute bottom-0 left-0 right-0 h-[600px] bg-gradient-to-t from-purple-100 via-purple-50 to-transparent z-[-1]"></div>
-      <div className="absolute bottom-[-10%] right-[-5%] w-[60%] h-[60%] rounded-full bg-purple-200 blur-[120px] opacity-60 z-[-1]"></div>
-      <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-blue-100 blur-[120px] opacity-40 z-[-1]"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-400/50 via-blue-300/35 to-blue-500/50 z-[-1]"></div>
+      <div className="absolute top-0 left-0 right-0 h-full bg-gradient-to-b from-blue-300/60 via-transparent to-blue-400/60 z-[-1]"></div>
+      <div className="absolute bottom-[-10%] right-[-5%] w-[70%] h-[70%] rounded-full bg-blue-500 blur-[150px] opacity-70 z-[-1]"></div>
+      <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] rounded-full bg-blue-400 blur-[150px] opacity-60 z-[-1]"></div>
+      <div className="absolute top-[30%] right-[20%] w-[50%] h-[50%] rounded-full bg-blue-600 blur-[120px] opacity-50 z-[-1]"></div>
 
       {/* HEADER */}
       <Header />

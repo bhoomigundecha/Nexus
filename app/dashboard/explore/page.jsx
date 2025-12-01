@@ -59,9 +59,9 @@ const Explore = () => {
 
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10'>
         {publicCourses.map((course, index) => (
-            <div key={index} className='p-5 border rounded-lg shadow-sm hover:shadow-md hover:border-primary cursor-pointer bg-white transition-all'>
+            <div key={index} className='p-5 border rounded-lg shadow-sm hover:shadow-md hover:border-blue-700 cursor-pointer bg-white transition-all'>
                 {/* Placeholder for course image if you had one */}
-                <div className='h-[150px] w-full bg-gradient-to-r from-purple-200 to-blue-200 rounded-lg mb-4 animate-pulse'></div>
+                <div className='h-[150px] w-full bg-gradient-to-r from-blue-200 to-cyan-200 rounded-lg mb-4 animate-pulse'></div>
                 
                 <h3 className='font-bold text-lg truncate'>{course.name}</h3>
                 <p className='text-sm text-gray-500 line-clamp-2 mt-1'>{course.description}</p>

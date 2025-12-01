@@ -35,50 +35,65 @@ export async function generateCourseLayoutAction(userCourseInput) {
 }
 
 /**
- * Generate a unique course banner image using Gemini AI
+ * Generate a course banner using beautiful gradient SVGs
+ * Creates unique, category-specific banners with blue theme
  */
 async function generateCourseBanner(topic, category, courseId) {
   try {
-    const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
-    // Create a prompt for generating a course banner
-    const prompt = `Create a professional, modern course banner image for an online learning platform. 
-    Course topic: ${topic}
-    Category: ${category}
-    
-    The banner should be:
-    - Clean and professional design
-    - 800x400 pixels aspect ratio
-    - Include relevant icons or imagery related to ${topic} and ${category}
-    - Use a gradient background with vibrant colors (purple, blue, or related to the topic)
-    - Modern, minimalist style
-    - No text or words in the image`;
-
-    const result = await model.generateContent([prompt]);
-    const response = result.response;
-
-    // Note: Gemini's text model doesn't generate images directly
-    // For now, we'll use a category-based approach with pre-generated images
-    // In production, you'd use an image generation API like DALL-E or Stable Diffusion
-
-    // For now, return a category-based placeholder
-    const categoryImages = {
-      'Programming': '/coding.png',
-      'Creative': '/creative.png',
-      'Health': '/lotus.png',
-      'Yoga': '/lotus.png',
-      'Fitness': '/lotus.png',
-      'Business': '/coding.png',
-      'Design': '/creative.png',
-      'Marketing': '/coding.png',
+    const gradientMap = {
+      'Programming': { from: '#1e40af', to: '#3b82f6', via: '#2563eb' },
+      'Creative': { from: '#1e3a8a', to: '#60a5fa', via: '#3b82f6' },
+      'Health': { from: '#1e40af', to: '#93c5fd', via: '#60a5fa' },
+      'Yoga': { from: '#1e3a8a', to: '#a5b4fc', via: '#6366f1' },
+      'Fitness': { from: '#1e40af', to: '#60a5fa', via: '#3b82f6' },
+      'Business': { from: '#1e3a8a', to: '#3b82f6', via: '#2563eb' },
+      'Design': { from: '#1e40af', to: '#60a5fa', via: '#3b82f6' },
+      'Marketing': { from: '#1e3a8a', to: '#3b82f6', via: '#2563eb' },
+      'Data Science': { from: '#1e40af', to: '#93c5fd', via: '#60a5fa' },
+      'Web Development': { from: '#1e3a8a', to: '#60a5fa', via: '#3b82f6' },
+      'Mobile Development': { from: '#1e40af', to: '#60a5fa', via: '#3b82f6' },
+      'Machine Learning': { from: '#1e3a8a', to: '#93c5fd', via: '#60a5fa' },
     };
 
-    return categoryImages[category] || '/placeholder.png';
+    const colors = gradientMap[category] || { from: '#1d4ed8', to: '#3b82f6', via: '#2563eb' };
 
+    const svg = `
+      <svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:${colors.from};stop-opacity:1" />
+            <stop offset="50%" style="stop-color:${colors.via};stop-opacity:1" />
+            <stop offset="100%" style="stop-color:${colors.to};stop-opacity:1" />
+          </linearGradient>
+          <radialGradient id="radial" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" style="stop-color:${colors.to};stop-opacity:0.3" />
+            <stop offset="100%" style="stop-color:${colors.from};stop-opacity:0.1" />
+          </radialGradient>
+        </defs>
+        <rect width="800" height="400" fill="url(#grad)"/>
+        <circle cx="700" cy="100" r="150" fill="url(#radial)"/>
+        <circle cx="100" cy="300" r="100" fill="url(#radial)"/>
+      </svg>
+    `.trim();
+
+    return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
   } catch (error) {
     console.error("Error generating course banner:", error);
-    return '/placeholder.png';
+
+    // Fallback
+    const fallbackSvg = `
+      <svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#1d4ed8;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <rect width="800" height="400" fill="url(#grad)"/>
+      </svg>
+    `.trim();
+
+    return `data:image/svg+xml;base64,${Buffer.from(fallbackSvg).toString('base64')}`;
   }
 }
 

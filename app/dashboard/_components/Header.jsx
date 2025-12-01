@@ -49,7 +49,7 @@ const Header = () => {
       <Image src={"/logo.svg"} width={40} height={50} alt="Squid" />
       
       <div className="flex items-center gap-4">
-        <UserButton />
+        <UserButton className="bg-blue-600 hover:bg-blue-700"/>
         
         {/* Mobile Menu */}
         <div className="md:hidden">

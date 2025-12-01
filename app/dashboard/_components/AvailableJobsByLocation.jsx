@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { fetchJobs } from "../../../configs/jobsApi";
+import { fetchJobs } from "../../../config/jobsApi";
 
 export async function getServerSideProps() {
   const location = "Atlanta";

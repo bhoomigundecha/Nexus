@@ -17,8 +17,8 @@ const SelectCategory = () => {
     <div className='px-10 md:px-20'>
       <h2 className='my-5'>Select the Course category</h2>
       <div className='grid grid-cols-3 gap-10 px-10 md:px-20'>{CategoryList.map((item, index) => (
-      <div key={item.id} className={`flex flex-col p-5 border items-center rounded-xl hover:border-primary
-       hover:bg-blue-50 cursor-pointer ${userCourseInput?.category === item.name && 'border-primary bg-blue-50'}`}
+      <div key={item.id} className={`flex flex-col p-5 border items-center rounded-xl hover:border-blue-700
+       hover:bg-blue-50 cursor-pointer ${userCourseInput?.category === item.name && 'border-blue-700 bg-blue-50'}`}
       onClick={() => handleCategoryChange(item.name)}>
         <Image alt="placeholder"  src={item.icon} width={50} height={50}/>
         <h2>{item.name}</h2>

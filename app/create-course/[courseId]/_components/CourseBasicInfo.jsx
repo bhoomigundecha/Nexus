@@ -52,14 +52,34 @@ const CourseBasicInfo = ({ course, edit = true }) => {
           </div>
         </div>
 
-        <div>
-          <Image
-            src={course?.courseBanner || '/placeholder.png'}
-            width={300}
-            height={300}
-            alt='course banner'
-            className='w-full rounded-xl h-[250px] object-cover'
-          />
+        <div className='relative overflow-hidden rounded-xl shadow-lg bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500'>
+          {course?.courseBanner ? (
+            course.courseBanner.startsWith('data:image') ? (
+              <img
+                src={course.courseBanner}
+                alt='course banner'
+                className='w-full h-[300px] object-cover'
+                onError={(e) => {
+                  // Fallback to gradient if image fails to load
+                  e.target.style.display = 'none';
+                  e.target.parentElement.className = 'relative overflow-hidden rounded-xl shadow-lg bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500 flex items-center justify-center';
+                  e.target.parentElement.innerHTML = '<span class="text-white text-2xl font-bold opacity-80">Course Banner</span>';
+                }}
+              />
+            ) : (
+              <Image
+                src={course.courseBanner}
+                width={400}
+                height={300}
+                alt='course banner'
+                className='w-full h-[300px] object-cover'
+              />
+            )
+          ) : (
+            <div className='w-full h-[300px] flex items-center justify-center'>
+              <span className='text-white text-2xl font-bold opacity-80'>Course Banner</span>
+            </div>
+          )}
         </div>
       </div>
     </div>

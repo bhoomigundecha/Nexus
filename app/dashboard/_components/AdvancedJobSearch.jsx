@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { fetchJobs } from "../../../configs/jobsApi";
+import { fetchJobs } from "../../../config/jobsApi";
 
 // Custom hook to manage suggestions for job titles and locations
 const useSuggestions = (type) => {

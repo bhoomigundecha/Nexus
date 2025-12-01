@@ -44,25 +44,47 @@ function CourseStart({params}) {
         }
     }
 
-    const GetSelectedChapterContent=async(chapterId)=>{
-        // TODO: Implement chapter content generation
-        // For now, chapter content will be displayed from the course data
-        console.log('Selected chapter:', chapterId);
+    const GetSelectedChapterContent=async(chapterIndex)=>{
+        if (!course?.courseId || chapterIndex === undefined) return;
+        
+        try {
+            setChapterContent(null); // Clear previous content while loading
+            const response = await fetch(`/api/course/${courseId}/chapter/${chapterIndex}`);
+            
+            if (response.ok) {
+                const result = await response.json();
+                // Handle both success and fallback cases
+                if (result.fallback) {
+                    console.warn('Chapter content generation had issues:', result.error);
+                    setChapterContent({ content: [] });
+                } else {
+                    setChapterContent(result);
+                }
+            } else {
+                const errorData = await response.json().catch(() => ({}));
+                console.error('Failed to fetch chapter content:', errorData.error || response.statusText);
+                // Set empty content so fallback message shows
+                setChapterContent({ content: [] });
+            }
+        } catch (error) {
+            console.error('Error fetching chapter content:', error);
+            setChapterContent({ content: [] });
+        }
     }
 
   return (
     <div>
         {/* Chapter list Side Bar  */}
         <div className=' fixed md:w-72 hidden md:block h-screen border-r shadow-sm'>
-            <h2 className='font-medium text-lg bg-primary p-4
+            <h2 className='font-medium text-lg bg-blue-700 p-4
             text-white'>{course?.courseOutput?.course?.name}</h2>
 
             <div>
                 {course?.courseOutput?.course?.chapters.map((chapter,index)=>(
                     <div key={index} 
                     className={`cursor-pointer
-                    hover:bg-purple-50
-                    ${selectedChapter?.name==chapter?.name&&'bg-purple-100'}
+                    hover:bg-blue-50
+                    ${selectedChapter?.name==chapter?.name&&'bg-blue-100'}
                     `}
                     onClick={()=>{setSelectedChapter(chapter);
                     GetSelectedChapterContent(index)

@@ -41,54 +41,57 @@ const CourseCard = ({ course, refreshData, onDeleted }) => {
   };
 
   return (
-    <div className='shadow-sm rounded-lg border p-2 cursor-pointer hover:border-primary transition-all'>
+    <div className='shadow-md rounded-xl border border-gray-200 overflow-hidden cursor-pointer hover:border-blue-700 hover:shadow-xl transition-all duration-300 bg-white group'>
       <Link href={'/course/' + course.courseId}>
-        <Image 
-          src={course.courseBanner || '/placeholder.png'} 
-          width={300} 
-          height={200}
-          alt={course.name}
-          className='w-full h-[200px] object-cover rounded-lg'
-        />
+        <div className='relative overflow-hidden'>
+          <Image 
+            src={course.courseBanner || '/placeholder.png'} 
+            width={400} 
+            height={240}
+            alt={course.name}
+            className='w-full h-[240px] object-cover group-hover:scale-105 transition-transform duration-300'
+          />
+          <div className='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
+        </div>
       </Link>
       
-      <div className='p-2'>
-        <div className='flex justify-between items-center'>
-          <h2 className='font-medium text-lg line-clamp-1'>{course.name}</h2>
+      <div className='p-4'>
+        <div className='flex justify-between items-start mb-2'>
+          <h2 className='font-semibold text-lg line-clamp-2 text-gray-900 flex-1 pr-2'>{course.name}</h2>
           
           <DropdownOption 
             handleDelete={handleDelete}
             courseId={course.courseId}
           >
             <HiMiniEllipsisVertical 
-              className={`cursor-pointer ${deleting ? 'opacity-50' : ''}`}
+              className={`cursor-pointer text-gray-400 hover:text-gray-600 transition-colors ${deleting ? 'opacity-50' : ''}`}
             />
           </DropdownOption>
         </div>
         
-        <p className='text-sm text-gray-400 mt-1'>{course.category}</p>
+        <p className='text-sm text-gray-500 mb-3 font-medium'>{course.category}</p>
         
-        <div className='flex items-center justify-between mt-2'>
-          <h2 className='flex gap-2 items-center p-1 bg-purple-50 text-primary text-sm rounded-sm'>
-            <Image src={'/chapter.png'} alt='chapter' width={20} height={20} />
-            {course.courseOutput?.course?.noOfChapters || 0} Chapters
-          </h2>
+        <div className='flex items-center justify-between gap-2 mb-3'>
+          <div className='flex gap-2 items-center px-3 py-1.5 bg-blue-50 text-blue-700 text-sm rounded-lg font-medium'>
+            <Image src={'/chapter.png'} alt='chapter' width={18} height={18} />
+            <span>{course.courseOutput?.course?.noOfChapters || 0} Chapters</span>
+          </div>
           
-          <h2 className='flex gap-2 items-center p-1 bg-purple-50 text-primary text-sm rounded-sm'>
-            <Image src={'/time.png'} alt='time' width={20} height={20} />
-            {course.courseOutput?.course?.duration || 'N/A'}
-          </h2>
+          <div className='flex gap-2 items-center px-3 py-1.5 bg-blue-50 text-blue-700 text-sm rounded-lg font-medium'>
+            <Image src={'/time.png'} alt='time' width={18} height={18} />
+            <span>{course.courseOutput?.course?.duration || 'N/A'}</span>
+          </div>
         </div>
         
-        <div className='flex items-center gap-2 mt-2'>
+        <div className='flex items-center gap-2 pt-3 border-t border-gray-100'>
           <Image 
             src={course.userProfileImage || '/default-avatar.png'} 
             alt='user'
-            width={35}
-            height={35}
-            className='rounded-full'
+            width={32}
+            height={32}
+            className='rounded-full border-2 border-gray-200'
           />
-          <h2 className='text-sm'>{course.userName || 'Anonymous'}</h2>
+          <h2 className='text-sm text-gray-600 font-medium'>{course.userName || 'Anonymous'}</h2>
         </div>
       </div>
     </div>

@@ -45,8 +45,8 @@ const Upgrade = () => {
         </div>
 
         {/* Pro Plan */}
-        <div className='rounded-2xl border border-primary p-6 shadow-sm sm:px-8 lg:p-12 bg-white relative'>
-            <div className='absolute top-0 right-0 bg-primary text-white text-xs px-3 py-1 rounded-bl-xl rounded-tr-xl'>Popular</div>
+        <div className='rounded-2xl border border-blue-700 p-6 shadow-sm sm:px-8 lg:p-12 bg-white relative'>
+            <div className='absolute top-0 right-0 bg-blue-700 text-white text-xs px-3 py-1 rounded-bl-xl rounded-tr-xl'>Popular</div>
           <div className='text-center'>
             <h2 className='text-lg font-medium text-gray-900'>
               Pro
